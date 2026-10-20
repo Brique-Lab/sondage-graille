@@ -92,6 +92,7 @@ input[type=text]:focus,textarea:focus{outline:none;border-color:var(--ink)}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));width:max-content;max-width:calc(100% - 32px);background:var(--ink);color:#FFFFFF;padding:12px 18px;font-size:13px;border-radius:999px;z-index:5}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:899px){.photo{max-height:32vh}}
 @media (max-width:359px){.tiles{grid-template-columns:1fr}.tile{min-height:88px}}
 @media (min-width:900px){
   .app{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:none;height:100%}
