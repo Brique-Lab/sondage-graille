@@ -80,6 +80,7 @@ textarea{min-height:140px;resize:vertical}
 input[type=text]:focus,textarea:focus{outline:none;border-color:var(--ink)}
 .hint{font-size:12.5px;color:var(--soft);margin:0}
 .error{font-size:13px;color:var(--ink);background:var(--paper);border-radius:10px;padding:8px 12px;margin:0}
+.perk{margin:0;background:var(--paper);color:var(--ink);border-radius:14px;padding:12px 16px;font-size:14px;font-weight:700;line-height:1.4;max-width:44ch;box-shadow:0 6px 18px rgba(0,0,0,.08)}
 .legal{font-size:12px;color:var(--soft);margin:0;max-width:52ch}
 .nav{display:flex;align-items:center;gap:16px;padding-top:6px}
 .back{background:none;border:0;padding:10px 0;font:inherit;font-size:13px;color:var(--fg);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
@@ -238,6 +239,7 @@ const SCREENS = {
   },
   more: {
     kind: "single", look: "ligne", eyebrow: "Ce qu'on prépare", title: "On vous en parle ?", label: "Veut en parler",
+    perk: "En disant oui, vous faites partie des premiers : accès anticipé, gratuit les premiers mois.",
     options: [ { label: "Oui", value: "Oui", next: "contact" }, { label: "Pas pour l'instant", value: "Pas pour l'instant", next: "end" } ]
   },
   contact: { kind: "contact", look: "ligne", eyebrow: "Ce qu'on prépare", title: "Où vous joindre ?", next: "end" },
@@ -289,7 +291,8 @@ function progress() {
 function head(s) {
   return `${s.eyebrow ? `<div class="eyebrow">${esc(s.eyebrow)}</div>` : ""}
     <h1 id="q-title" tabindex="-1">${esc(val(s.title)).replace(/ ([?!:])$/, "&nbsp;$1")}</h1>
-    ${s.lede ? `<p class="lede">${esc(val(s.lede))}</p>` : ""}`;
+    ${s.lede ? `<p class="lede">${esc(val(s.lede))}</p>` : ""}
+    ${s.perk ? `<p class="perk">${esc(s.perk)}</p>` : ""}`;
 }
 function nav(label, disabled, id = "next") {
   return `<div class="nav">${history.length ? `<button class="back" id="back" type="button">Retour</button>` : ""}
@@ -315,6 +318,7 @@ function renderIntro() {
     <p class="lede">Graille Club, c'est la carte des meilleures adresses de Toulouse : plus de 400 restaurants testés, et une communauté de 11 000 personnes sur Instagram.</p>
     <p class="lede">On prépare une offre pour y installer votre restaurant. Avec la réservation, des photos de vos plats, votre menu du jour en ligne et des passages dans les stories.</p>
     <p class="lede"><strong>Avant de la construire, on aimerait savoir comment vous faites aujourd'hui.</strong> Il n'y a presque rien à écrire.</p>
+    <p class="perk">Les restaurants qui répondent auront un accès anticipé à l'offre, gratuit les premiers mois.</p>
     ${nav("Je réponds", false)}
   </section>`;
 }
@@ -380,7 +384,7 @@ function renderEnd() {
     return `<section class="screen">
       <div class="eyebrow">C'est envoyé</div>
       <h1 id="q-title" tabindex="-1">Merci${name ? " " + esc(name) : ""}</h1>
-      <p class="lede">Vos réponses sont parties. ${more ? "On revient vers vous pour en parler." : "Elles nous aident à construire quelque chose qui vous serve vraiment."}</p>
+      <p class="lede">Vos réponses sont parties. ${more ? "On revient vers vous pour l'accès anticipé." : "Elles nous aident à construire quelque chose qui vous serve vraiment."}</p>
     </section>`;
   }
   return `<section class="screen">
