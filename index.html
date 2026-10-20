@@ -310,7 +310,7 @@ function render() {
 
 function renderIntro() {
   return `<section class="screen">
-    <div class="eyebrow">${RESTO.name ? `Pour l'équipe de ${esc(RESTO.name)}` : "Pour les restaurants de Toulouse"}</div>
+    <div class="eyebrow">${RESTO.name ? esc(RESTO.name) : "Pour les restaurants de Toulouse"}</div>
     <h1 id="q-title" tabindex="-1">Sur la carte de Graille Club</h1>
     <p class="lede">Graille Club, c'est la carte des meilleures adresses de Toulouse : plus de 400 restaurants testés, et une communauté de 11 000 personnes sur Instagram.</p>
     <p class="lede">On prépare une offre pour y installer votre restaurant. Avec la réservation, des photos de vos plats, votre menu du jour en ligne et des passages dans les stories.</p>
