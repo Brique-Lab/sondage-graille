@@ -288,7 +288,7 @@ function progress() {
 
 function head(s) {
   return `${s.eyebrow ? `<div class="eyebrow">${esc(s.eyebrow)}</div>` : ""}
-    <h1 id="q-title" tabindex="-1">${esc(val(s.title))}</h1>
+    <h1 id="q-title" tabindex="-1">${esc(val(s.title)).replace(/ ([?!:])$/, "&nbsp;$1")}</h1>
     ${s.lede ? `<p class="lede">${esc(val(s.lede))}</p>` : ""}`;
 }
 function nav(label, disabled, id = "next") {
